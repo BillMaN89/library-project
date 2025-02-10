@@ -1,39 +1,50 @@
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 20px;
-    background-color: rgb(249, 236, 236);
+    font-size: 20px; 
 }
 
 body {
     margin: 0;
-    /* display: flexbox;
-    justify-content: center;
-    align-items: center; */
+    background-color: rgb(249, 236, 236);
 }
 
-li {
-    margin-bottom: 10px;
+h1{
+    text-align: center;
+    margin-top: 20px;
 }
 
-li button {
-    font-size: 12px;
-    margin-left: 20px;
-    color: aliceblue;
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+    margin: auto;
 }
 
-.forma,
+
+/* .forma,
 .container{
     display: flex;
-}
+} */
 
 .forma {
-    /* display: flex; */
     flex-direction: column;
     gap: 10px;
+    width: 40%;
+}
+
+#library-container {
+    width: 55%;
+    padding: 10px;
+    border: 1px dotted black;
+    min-height: 200px;
+    background-color: white;
 }
 
 .container {
-    /* display: flex; */
+    display: flex;
     justify-content:flex-start;
     align-items: center;
     gap: 10px;

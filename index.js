@@ -1,5 +1,9 @@
 const myLibrary = [];
 
+const library = document.querySelector("#library-container");
+const message =  document.querySelector(".message-container");
+message.setAttribute("style","font-size: 30px;")
+
 function Book(title, author, pages, have_read = false){
     this.title = title;
     this.author = author;
@@ -7,31 +11,40 @@ function Book(title, author, pages, have_read = false){
     this.have_read = have_read;
 }
 
-const message =  document.querySelector(".message-container");
-message.setAttribute("style","color: red; font-size: 30px;")
 
-
+function displayMessage(text,color){
+    message.textContent = text;
+    message.style.color = color;
+    setTimeout(() => {
+        message.textContent = "";
+    }, 3000);
+}
 
 function addBookToLibrary(title,author,pages,have_read = false) {
     //validate inputs
     if (!title || typeof title !== 'string'){
-        message.textContent = "Please enter a valid book title!"
+        displayMessage("Please enter a valid book title!", "red");
         console.log("Invalid title");
         return;
     }
     if (!author || typeof author !== 'string'){
-        message.textContent = "Please enter a valid author name!"
+        displayMessage("Please enter a valid author name!", "red");
         console.log("Invalid author");
         return;
     }
     if (!pages || typeof pages !=='number' || pages <= 0){
-        message.textContent = "Please enter a valid number of pages!"
+        displayMessage("Please enter a valid number of pages!", "red");
+
         console.log("Invalid pages");
         return;
     }
+
     //book creation
     const book = new Book(title,author,pages,have_read);
     myLibrary.push(book);
+
     //log
+    displayMessage("Book was added to the Library", "green");
     console.log(`Book added successfully: Title = ${title}, Author = ${author}, Pages = ${pages}, Read = ${have_read}`);
 }
+
