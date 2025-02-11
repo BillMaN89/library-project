@@ -9,6 +9,8 @@ message.setAttribute("style","font-size: 30px;");
 const form = document.querySelector(".forma");
 const visBtn = document.querySelector("#newBookBtn");
 
+const addBookBtn = document.querySelector("#addBook");
+
 
 //Book constructor
 function Book(title, author, pages, have_read = false){
@@ -28,7 +30,7 @@ function displayMessage(text,color){
 }
 
 
-function addBookToLibrary(title,author,pages,have_read = false) {
+function addBookToLibrary(title,author,pages,have_read) {
     //validate inputs
     if (!title || typeof title !== 'string'){
         displayMessage("Please enter a valid book title!", "red");
@@ -86,8 +88,6 @@ function displayLibrary(){
             displayLibrary(); // Refresh the display
         })
     })
-    
-
 }
 
 //form display
@@ -100,6 +100,31 @@ visBtn.addEventListener("click", () => {
         visBtn.textContent = "New Book";
     }
 });
+
+
+function handleBookSubmission(event){
+    event.preventDefault();//stop the form from submitting
+    //target form inputs
+    const titleInput = document.querySelector("#title").value;
+    const authorInput = document.querySelector("#author").value;
+    const pageInput = parseInt(document.querySelector("#pages").value);
+    const haveRead = document.querySelector("input[name='have_read']:checked")?.value;
+
+    addBookToLibrary(titleInput, authorInput, pageInput, haveRead);
+
+    //clear input values
+    document.querySelector("#title").value = "";
+    document.querySelector("#author").value = "";
+    document.querySelector("#pages").value = "";
+    const checkedRadio = document.querySelector("input[name='have_read']:checked");
+    if (checkedRadio){
+        checkedRadio.checked = false;
+    }
+
+    displayLibrary();
+}
+
+addBookBtn.addEventListener("click", handleBookSubmission);
 
 
 //example book entry
