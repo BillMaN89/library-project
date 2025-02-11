@@ -4,7 +4,10 @@ const myLibrary = [];
 //DOM manipulation
 const library = document.querySelector("#library-container");
 const message =  document.querySelector(".message-container");
-message.setAttribute("style","font-size: 30px;")
+message.setAttribute("style","font-size: 30px;");
+//to toggle form display
+const form = document.querySelector(".forma");
+const visBtn = document.querySelector("#newBookBtn");
 
 
 //Book constructor
@@ -87,7 +90,18 @@ function displayLibrary(){
 
 }
 
+//form display
+visBtn.addEventListener("click", () => {
+    if (form.style.display === "none"){
+        form.style.display = "block";
+        visBtn.textContent = "Close"
+    }else {
+        form.style.display = "none";
+        visBtn.textContent = "New Book";
+    }
+});
+
 
 //example book entry
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 250, true);
-displayLibrary();
+//addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 250, "Yes");
+//displayLibrary();

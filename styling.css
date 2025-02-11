@@ -33,6 +33,7 @@ h1{
     flex-direction: column;
     gap: 10px;
     width: 40%;
+    display: none;
 }
 
 #library-container {
