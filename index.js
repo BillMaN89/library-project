@@ -10,6 +10,7 @@ const form = document.querySelector(".forma");
 const visBtn = document.querySelector("#newBookBtn");
 
 const addBookBtn = document.querySelector("#addBook");
+const emptyLibrary = document.querySelector("#emptyLibrary");
 
 
 //Book constructor
@@ -60,6 +61,8 @@ function addBookToLibrary(title,author,pages,have_read) {
 
 //Book Display in Library Container
 function displayLibrary(){
+    //duplicate avoidance
+    library.textContent = "";
     //empty array check
     if (myLibrary.length === 0){
         const emptyMessage = document.createElement("p");
@@ -78,14 +81,28 @@ function displayLibrary(){
                                 Read it? : ${Book.have_read}`;
         const bton = document.createElement("button");
         bton.textContent = "Delete";
+        //read status
+        const changeStatus = document.createElement("button");
+        changeStatus.textContent = "Change Read Status";
         card.appendChild(bookItem);
         card.appendChild(bton);
+        card.appendChild(changeStatus);
         library.appendChild(card);
 
         bton.addEventListener("click", () =>{
             library.removeChild(card);
             myLibrary.splice(index, 1); // Remove book from array
             displayLibrary(); // Refresh the display
+        })
+
+        //change Read Status
+        changeStatus.addEventListener("click", () =>{
+            if (myLibrary[index].have_read === "Yes"){
+                myLibrary[index].have_read = "No";
+            } else {
+                myLibrary[index].have_read = "Yes";
+            }
+            displayLibrary();
         })
     })
 }
@@ -108,7 +125,7 @@ function handleBookSubmission(event){
     const titleInput = document.querySelector("#title").value;
     const authorInput = document.querySelector("#author").value;
     const pageInput = parseInt(document.querySelector("#pages").value);
-    const haveRead = document.querySelector("input[name='have_read']:checked")?.value;
+    const haveRead = document.querySelector("input[name='have_read']:checked")?.value || "No";
 
     addBookToLibrary(titleInput, authorInput, pageInput, haveRead);
 
@@ -124,7 +141,12 @@ function handleBookSubmission(event){
     displayLibrary();
 }
 
+//button listeners
 addBookBtn.addEventListener("click", handleBookSubmission);
+emptyLibrary.addEventListener("click",() =>{
+    myLibrary.splice(0,myLibrary.length);
+    displayLibrary();
+})
 
 
 //example book entry
