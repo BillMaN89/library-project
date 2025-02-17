@@ -12,6 +12,8 @@ const visBtn = document.querySelector("#newBookBtn");
 const addBookBtn = document.querySelector("#addBook");
 const emptyLibrary = document.querySelector("#emptyLibrary");
 
+displayLibrary();
+
 
 //Book constructor
 function Book(title, author, pages, have_read = false){
