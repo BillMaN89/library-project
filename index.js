@@ -111,7 +111,7 @@ function displayLibrary(){
 
 //form display
 visBtn.addEventListener("click", () => {
-    if (form.style.display === "none"){
+    if (form.style.display === "none" || form.style.display === ""){
         form.style.display = "block";
         visBtn.textContent = "Close"
     }else {
